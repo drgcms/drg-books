@@ -1,0 +1,71 @@
+## YAML Template for dc_books
+---
+table: dc_book_chapter
+
+index:
+  filter: title,chapter,dc_book_id
+  actions: standard
+
+result_set:
+  actions: 
+    1: edit
+    2: duplicate
+    3: delete
+
+  columns:
+    10:  
+      name: chapter
+    20:  
+      name: title
+    30:  
+      name: dc_book_id
+      eval: dc_name4_id,dc_book,title
+
+edit_title: title
+
+form:
+  actions: standard
+
+  tabs:
+    1base:
+      10:
+        name: title
+        type: text_field
+        html:
+          size: 60
+      15:
+        name: link
+        type: text_field
+        html:
+          size: 60
+
+      20:
+        name: chapter
+        type: text_field
+        html:
+          size: 10
+
+      30:
+        name: author
+        type: text_field
+        html:
+          size: 30
+      40:
+        name: can_comment
+        type: check_box
+
+      50:
+        name: dc_book_id
+        type: text_autocomplete
+        search: dc_book.title      
+        html:
+          size: 30        
+
+    2texts:
+      10:
+        name: dc_book_texts
+        type: embedded
+        formname: dc_book_text
+        html:
+          height: 1000
+

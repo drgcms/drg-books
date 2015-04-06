@@ -1,0 +1,26 @@
+<div class="book-top">
+  <%= chapter.dc_book.title %>
+  <div style="font-size:0.6em;"><%= chapter.title %></div>
+</div>
+<div class="book-chapter-versions"><%= t('drgcms.version', 'Version') %>:
+  <% versions.each do |v| %>&nbsp;
+  <%= text.version == v[0] ? v[0] : 
+      link_to(v[0], method: 'chapter', book_id: chapter.dc_book_id, chapter_id: chapter._id, text_id: v[1] ) %>&nbsp;
+  <% end %>
+</div>
+<div class="book-chapter-prev-next">
+  <%= link_to(' << '.html_safe + prev_chapter.title, method: 'chapter', 
+              book_id: prev_chapter.dc_book.link, chapter_id: prev_chapter.link ) if prev_chapter %>&nbsp;|&nbsp;
+  <%= link_to(' &#9650; '.html_safe, book_id: chapter.dc_book.link, method: 'toc' ) %>&nbsp;|&nbsp;
+  <%= link_to(next_chapter.title + ' >> '.html_safe, method: 'chapter', 
+              book_id: next_chapter.dc_book.link, chapter_id: next_chapter.link ) if next_chapter %>
+  
+</div>
+<div class="book-chapter-text">
+  <%= if dc_edit_mode?
+    dc_link_for_edit({ controller: 'cmsedit', action: 'edit', id: text._id, ids: chapter._id, 
+        table: 'dc_book_chapter;dc_book_text', title: "#{t('drgcms.edit')}" })
+    end %>
+
+  <%= text.body.html_safe %></div>
+<div class="book-chapter-comments">Comments</div>

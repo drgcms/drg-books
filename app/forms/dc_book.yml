@@ -1,0 +1,50 @@
+## YAML Template for dc_books
+---
+table: dc_book
+
+index:
+  filter: title
+  actions: standard
+
+result_set:
+  actions: 
+    1: edit
+    3: delete
+
+  columns:
+    10:  
+      name: title
+    20:  
+      name: author
+    30:  
+      name: active
+      eval: dc_icon4_boolean
+
+edit_title: title
+
+form:
+  actions: standard
+
+  fields:
+    10:
+      name: title
+      type: text_field
+      html:
+        size: 60
+    20:
+      name: link
+      type: text_field
+      html:
+        size: 60
+
+    30:
+      name: description
+      type: text_area
+      html:
+        size: 80x10
+
+    40:
+      name: author
+      type: text_field
+      html:
+        size: 30

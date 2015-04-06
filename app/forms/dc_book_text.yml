@@ -1,0 +1,47 @@
+## YAML Template for dc_books
+---
+table: dc_book_text
+
+index:
+  actions: standard
+
+result_set:
+  actions: 
+    1: edit
+    3: delete
+
+  columns:
+    10:  
+      name: version
+    20:  
+      name: author
+
+edit_title: version
+
+form:
+  actions:  
+    standard: yes
+    10: 
+      type: submit
+      text: Potrdi knjiženje
+      params:
+        before_save: eval DcBook.before_save    
+
+  fields:
+    10:
+      name: version
+      type: text_field
+      html:
+        size: 10
+
+    20:
+      name: author
+      type: text_field
+      html:
+        size: 20
+
+    30:
+      name: body
+      type: html_field
+#      options: "height: 100,skin: 'moonocolor,/skins/ckeditor/moonocolor/'"
+      options: "height: 500"

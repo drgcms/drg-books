@@ -1,0 +1,13 @@
+<h1><%= t('dc_book.books_list') %></h1>
+<div class="books-list">
+<% books.each do |book| %>
+   <div class="book-title">
+     <%= if dc_edit_mode?
+       dc_link_for_edit({ controller: 'cmsedit', action: 'edit', id: book._id, 
+                          table: 'dc_book', title: "#{t('drgcms.edit')} #{book.title}" })
+      end %>
+     <%= link_to(book.title, book_id: book.link, method: 'toc' ) %>
+     <div class="book-content"><%= book.description.html_safe %></div>
+   </div>
+<% end %>
+</div>
