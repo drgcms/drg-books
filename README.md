@@ -1,6 +1,6 @@
 # DrgBlogNewsForum
 
-DRG CMS DrgBooks plugin implements documentation management in your web site.
+DrgBooks plugin implements documentation management in DRG CMS enabled web site.
 
 Configuration
 ----------------
