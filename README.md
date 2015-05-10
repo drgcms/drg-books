@@ -5,16 +5,23 @@ DRG CMS DrgBooks plugin implements documentation management in your web site.
 Configuration
 ----------------
 
+Usage:
+
 Add this line to your Gemfile:
 ```ruby
   gem 'drg_books'
 ```  
 
-Usage: Add this line to design.
+Create apropriate dc_page document with related design. Use this line in design.
+```irb
 div id="docs"><%= dc_render(:dc_book) %></div>
+```
 
-Optional configuration in Site document:
-```yaml
+Update routes.rb
+```ruby
+  get '/books/:method/:book_id/', to: 'dc_main#page', :defaults => { path: 'books' }
+  get '/books/:method/:book_id/:chapter_id', to: 'dc_main#page', :defaults => { path: 'books' }
+  get '/books/:method/:book_id/:chapter_id/:version', to: 'dc_main#page', :defaults => { path: 'books' }
 ```
 
 Documentation

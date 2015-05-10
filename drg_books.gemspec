@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Damjan Rems"]
   s.email       = ["drgcms@gmail.com"]
   s.homepage    = "http://www.drgcms.org"
-  s.summary     = "Documentation plugin for DRG CMS"
-  s.description = "Plugin for writing documentation for DRG CMS"
+  s.summary     = "DRG CMS: Documentation plugin"
+  s.description = "DRG CMS: Plugin for writing documentation"
   s.license     = "MIT-LICENSE"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
