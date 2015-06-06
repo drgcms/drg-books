@@ -56,10 +56,8 @@ form:
 
       50:
         name: dc_book_id
-        type: text_autocomplete
-        search: dc_book.title      
-        html:
-          size: 30        
+        type: select
+        eval: dc_choices4('dc_book','title')     
 
     2texts:
       10:
