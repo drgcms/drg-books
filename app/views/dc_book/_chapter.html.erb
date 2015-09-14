@@ -22,5 +22,13 @@
         table: 'dc_book_chapter;dc_book_text', title: "#{t('drgcms.edit')}" })
     end %>
 
-  <%= text.body.html_safe %></div>
-<div class="book-chapter-comments">Comments</div>
+  <%= text.body.html_safe %>
+</div>
+
+<div class="book-replies">
+  <h2><%= t('dc_blog.comments') %></h2>
+  <%= render partial: 'dc_replay/reply', formats: [:html], 
+             locals: { replies: replies, parent_id: chapter.id, parent_document: 'dc_book_chapter' } %>
+</div>
+
+<iframe id="iframe_edit" name="iframe_edit" scrolling="no"></iframe>

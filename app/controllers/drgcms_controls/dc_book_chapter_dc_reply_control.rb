@@ -1,5 +1,6 @@
+#encoding: utf-8
 #--
-# Copyright (c) 2013+ Damjan Rems
+# Copyright (c) 2014+ Damjan Rems
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -21,48 +22,29 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-class DcBookChapter
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  
-  field :title,       type: String
-  field :chapter,     type: String
-  field :link,        type: String
-  field :author,      type: String,  default: ''
-  field :can_comment, type: Boolean, default: true
-  
-  field :active,      type: Boolean, default: true
-  field :created_by,  type: BSON::ObjectId
-  field :updated_by,  type: BSON::ObjectId
-  
-  belongs_to  :dc_book
-  embeds_many :dc_book_texts
-  embeds_many :dc_replies, as: :replies
-   
-  index( { dc_book_id: 1, link: 1 } )
-  
-  validates :title,   presence: true  
-  validates :chapter, presence: true  
-  
-before_save :do_before_save  
-  
 ######################################################################
-# Clears subject link of chars that shouldn't be there and also take care of its size
+# DrgcmsControls for DcBlog.DcReply form
 ######################################################################
-def clear_link(link)
-  link.gsub!(/\.|\?|\!\&|»|«|\,|\"|\'|\:/,'')
-  link.gsub!('<br>','')
-  link.gsub!(' ','-')
-  link.gsub!('---','-')
-  link.gsub!('--','-')
-  link
+module DrgcmsControls::DcBookChapterDcReplyControl
+
+######################################################################
+# Called when new empty record is created
+######################################################################
+def dc_new_record()
+# fill with quote when reply_to is present  
+  if params[:reply_to]
+    replyto = @record._parent.dc_replies.find(params[:reply_to])
+    @record.subject = "Re: #{replyto.subject}"
+    @record.body = "<div class='dc-forum-quote'>#{replyto.body}</div><br>"
+  end
+  @record.created_by_name = session[:user_name] if session[:user_name]
 end
 
 ######################################################################
-def do_before_save
-  if self.link.empty?
-    self.link = clear_link("#{self.chapter}-#{self.title.downcase.strip}")
-  end
+# Called before save. Reloads browser.
+######################################################################
+def dc_before_save()
+  params[:return_to] = 'parent.reload'
 end
-  
-end
+
+end 

@@ -77,12 +77,15 @@ def chapter
   if chapter
     texts = chapter.dc_book_texts.where(active: true).to_a
     if texts.size > 0
+      replies = chapter.dc_replies.where(active: true).order(created_at: 1).
+                page(@parent.params[:page]).per(20)      
       versions = texts.inject([]) {|r,e| r << [e.version, e._id] }
 # display specific version when text_id is specified      
       text = @parent.params[:text_id] ? chapter.dc_book_texts.find(@parent.params[:text_id]) : texts.last
       html << @parent.render( partial: 'dc_book/chapter', 
-                              locals: { chapter: chapter, text: text, versions: versions, 
-                              prev_chapter: prev_chapter, next_chapter: next_chapter}, formats: [:html] )
+                              locals: { chapter: chapter, replies: replies, text: text, versions: versions, 
+                              prev_chapter: prev_chapter, next_chapter: next_chapter}, 
+                              formats: [:html] )
     end
   end
   html
