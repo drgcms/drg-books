@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "DRG CMS: Documentation plugin"
   s.description = "DRG CMS: Plugin for writing documentation"
   s.license     = "MIT-LICENSE"
+  s.metadata    = { 'source_code' => 'https://github.com/drgcms/drg-books' }
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
