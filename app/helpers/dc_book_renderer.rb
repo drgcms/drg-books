@@ -64,7 +64,8 @@ def chapter
   if chapter
     prev_chapter = DcBookChapter.where(dc_book_id: book._id, :chapter.lt => chapter.chapter)
                                 .order_by(chapter: -1).limit(1).first
-    next_chapter = DcBookChapter.where(dc_book_id: book._id, :chapter.gt => chapter.chapter).limit(1).first
+    next_chapter = DcBookChapter.where(dc_book_id: book._id, :chapter.gt => chapter.chapter)
+                                .order_by(chapter: 1).limit(1).first
   else
     prev_chapter, next_chapter = nil, nil 
   end
