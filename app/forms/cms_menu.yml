@@ -22,19 +22,18 @@
 #++
 
 menu:
-  30_dc_books: 
+  80_dc_books: 
     caption: Books
+    icon: book lg        
     items:
       10:
         caption: helpers.label.dc_book.tabletitle
         controller: cmsedit
-        picture: dc_book.png
-        params:
-          table: dc_book
+        icon: book lg        
+        table: dc_book
       20: 
         caption: helpers.label.dc_book_chapter.tabletitle
         controller: cmsedit
-        picture: dc_book_chapter.png
-        params:
-          table: dc_book_chapter
+        icon: file-text-o lg        
+        table: dc_book_chapter
                 
