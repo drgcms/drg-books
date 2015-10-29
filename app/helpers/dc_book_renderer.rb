@@ -49,6 +49,7 @@ def toc
     html << dc_link_for_create({ controller: 'cmsedit', table: 'dc_book_chapter', title: t('dc_book.new_chapter') }) 
   end
   book = DcBook.find_by(link: @parent.params[:book_id])
+  @parent.page_title = book.title
   chapters = DcBookChapter.where(dc_book_id: book._id, active: true).sort(chapter: 1).to_a
   html << @parent.render( partial: 'dc_book/toc', locals: { chapters: chapters, book: book }, formats: [:html] )
 end
@@ -83,6 +84,7 @@ def chapter
       versions = texts.inject([]) {|r,e| r << [e.version, e._id] }
 # display specific version when text_id is specified      
       text = @parent.params[:text_id] ? chapter.dc_book_texts.find(@parent.params[:text_id]) : texts.last
+      @parent.page_title = "#{book.title}-#{chapter.title}"
       html << @parent.render( partial: 'dc_book/chapter', 
                               locals: { chapter: chapter, replies: replies, text: text, versions: versions, 
                               prev_chapter: prev_chapter, next_chapter: next_chapter}, 
