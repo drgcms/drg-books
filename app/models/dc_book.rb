@@ -21,6 +21,22 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
+######################################################################
+# == Schema information
+#
+# Collection name: dc_book : Books
+#
+#  _id                  BSON::ObjectId       _id
+#  created_at           Time                 created_at
+#  updated_at           Time                 updated_at
+#  title                String               Book title
+#  link                 String               link
+#  description          String               Short description of the book
+#  active               Mongoid::Boolean     Active
+#  author               String               Author's name
+#  created_by           BSON::ObjectId       created_by
+#  updated_by           BSON::ObjectId       updated_by
+######################################################################
 class DcBook
   include Mongoid::Document
   include Mongoid::Timestamps

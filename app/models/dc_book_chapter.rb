@@ -21,6 +21,26 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
+######################################################################
+# == Schema information
+#
+# Collection name: dc_book_chapter : Chapter
+#
+#  _id                  BSON::ObjectId       _id
+#  created_at           Time                 created_at
+#  updated_at           Time                 updated_at
+#  title                String               Chapter title
+#  chapter              String               Chapter number. Can be nested 01.10.08.1
+#  link                 String               link
+#  author               String               Author's name
+#  can_comment          Mongoid::Boolean     Comments are allowed
+#  active               Mongoid::Boolean     active
+#  created_by           BSON::ObjectId       created_by
+#  updated_by           BSON::ObjectId       updated_by
+#  dc_book_id           Object               Book title
+#  dc_book_texts        Embedded:DcBookText  dc_book_texts
+#  dc_replies           Embedded:DcReply     dc_replies
+######################################################################
 class DcBookChapter
   include Mongoid::Document
   include Mongoid::Timestamps
